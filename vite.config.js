@@ -7,16 +7,15 @@ import path from "path";
 import child_process from "child_process";
 import { env } from "process";
 
-const baseFolder =
-    env.APPDATA !== undefined && env.APPDATA !== ""
-        ? `${env.APPDATA}/ASP.NET/https`
-        : `${env.HOME}/.aspnet/https`;
 
-const certificateName = "api_react_fast_food_online.client";
-const certFilePath = path.join(baseFolder, `${certificateName}.pem`);
-const keyFilePath = path.join(baseFolder, `${certificateName}.key`);
 
-if (!fs.existsSync(certFilePath) || !fs.existsSync(keyFilePath)) {
+
+
+
+
+const useHttps = false;
+
+if (useHttps && (!fs.existsSync(certFilePath) || !fs.existsSync(keyFilePath))) {
     if (
         0 !==
         child_process.spawnSync(
@@ -43,7 +42,6 @@ const target = env.ASPNETCORE_HTTPS_PORT
     ? env.ASPNETCORE_URLS.split(";")[0]
     : "https://localhost:7135";
 
-// https://vitejs.dev/config/
 export default defineConfig({
     plugins: [plugin()],
     resolve: {
@@ -59,9 +57,76 @@ export default defineConfig({
             },
         },
         port: 5173,
-        https: false,
+        https: useHttps ? {
+            key: fs.readFileSync(keyFilePath),
+            cert: fs.readFileSync(certFilePath),
+        } : false,
     },
     build: {
-        sourcemap: false, // Tắt tạo source map
+        sourcemap: false,
     },
 });
+
+
+
+
+
+
+// const baseFolder =
+//     env.APPDATA !== undefined && env.APPDATA !== ""
+//         ? `${env.APPDATA}/ASP.NET/https`
+//         : `${env.HOME}/.aspnet/https`;
+
+// const certificateName = "api_react_fast_food_online.client";
+// const certFilePath = path.join(baseFolder, `${certificateName}.pem`);
+// const keyFilePath = path.join(baseFolder, `${certificateName}.key`);
+
+// if (!fs.existsSync(certFilePath) || !fs.existsSync(keyFilePath)) {
+//     if (
+//         0 !==
+//         child_process.spawnSync(
+//             "dotnet",
+//             [
+//                 "dev-certs",
+//                 "https",
+//                 "--export-path",
+//                 certFilePath,
+//                 "--format",
+//                 "Pem",
+//                 "--no-password",
+//             ],
+//             { stdio: "inherit" }
+//         ).status
+//     ) {
+//         throw new Error("Could not create certificate.");
+//     }
+// }
+
+// const target = env.ASPNETCORE_HTTPS_PORT
+//     ? `https://localhost:${env.ASPNETCORE_HTTPS_PORT}`
+//     : env.ASPNETCORE_URLS
+//     ? env.ASPNETCORE_URLS.split(";")[0]
+//     : "https://localhost:7135";
+
+// // https://vitejs.dev/config/
+// export default defineConfig({
+//     plugins: [plugin()],
+//     resolve: {
+//         alias: {
+//             "@": fileURLToPath(new URL("./src", import.meta.url)),
+//         },
+//     },
+//     server: {
+//         proxy: {
+//             "^/weatherforecast": {
+//                 target,
+//                 secure: false,
+//             },
+//         },
+//         port: 5173,
+//         https: false,
+//     },
+//     build: {
+//         sourcemap: false, // Tắt tạo source map
+//     },
+// });
