@@ -1,0 +1,48 @@
+.roles-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+}
+
+.role-item {
+    background: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 16px;
+    flex: 1 1 calc(33.333% - 32px);
+    box-sizing: border-box;
+}
+
+.role-item h2 {
+    margin-top: 0;
+}
+
+.role-actions {
+    margin-top: 16px;
+}
+
+.edit-button,
+.delete-button,
+.add-button {
+    background: #007bff;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    text-decoration: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.delete-button {
+    background: #dc3545;
+}
+
+.add-button {
+    background: #28a745;
+}
+
+.edit-button:hover,
+.delete-button:hover,
+.add-button:hover {
+    opacity: 0.8;
+}

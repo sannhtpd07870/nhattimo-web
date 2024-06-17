@@ -1,0 +1,29 @@
+.admin-layout {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.admin-header {
+    /* CSS cho header */
+}
+
+.admin-content {
+    display: flex;
+    flex: 1;
+}
+
+.admin-nav {
+    width: 250px;
+    /* CSS cho navbar */
+}
+
+.admin-main {
+    flex: 1;
+    padding: 20px;
+    /* CSS cho phần chính */
+}
+
+.admin-footer {
+    /* CSS cho footer */
+}

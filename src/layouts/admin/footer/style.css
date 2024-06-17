@@ -1,0 +1,7 @@
+.admin-footer {
+    grid-column: 1 / -1;
+    background-color: #343a40;
+    color: white;
+    text-align: center;
+    padding: 10px;
+}

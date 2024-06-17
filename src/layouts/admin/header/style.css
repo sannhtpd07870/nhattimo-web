@@ -1,0 +1,7 @@
+.admin-header {
+    grid-column: 1 / -1;
+    background-color: #343a40;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}

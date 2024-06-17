@@ -1,0 +1,15 @@
+.custom-link {
+    color: #007bff; /* Màu xanh */
+    text-decoration: none; /* Loại bỏ gạch chân */
+    font-weight: bold; /* Chữ đậm */
+    margin: 10px 20px; /* Khoảng đệm */
+    padding: 10px 20px; /* Khoảng đệm */
+    border: 1px solid #007bff; /* Đường viền */
+    border-radius: 5px; /* Bo góc */
+    transition: background-color 0.3s ease, color 0.3s ease; /* Hiệu ứng chuyển */
+}
+
+.custom-link:hover {
+    background-color: #007bff; /* Màu nền khi hover */
+    color: white; /* Màu chữ khi hover */
+}
